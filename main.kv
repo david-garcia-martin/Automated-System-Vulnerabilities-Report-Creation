@@ -1,0 +1,129 @@
+<MainWindow>:
+    do_default_tab: False
+    tab_width: 1600
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/a.jpg'
+    TabbedPanelItem:
+        text: 'Welcome to the Vulnerability Report Automation Tool'
+        font_name: "lemon"
+        font_size: 40
+        background_color: (26, 82, 118, 0.5)
+        FloatLayout:
+            size_hint_y: None
+            height: 50
+            Image:
+                source: "images/b.jpg"
+                size_hint_y: None
+                height: dp(613)
+                allow_stretch: True
+            Button:
+                text: 'Choose Inventory File'
+                pos_hint: {'right': 0.3, 'top': -0.5}
+                size_hint_x: 0.2
+                on_press: root.open_popup()
+                background_normal: "images/boton.png"
+                border: 30,30,30,30
+                font_name: "lemon"
+                font_size: 22
+            TextInput:
+                id: get_file
+                readonly: True
+                size_hint_x: 0.4
+                pos_hint: {'right': 0.72, 'top': -0.5}
+                font_name: "lemon"
+                font_size: 22
+            Button:
+                id:generate_report
+                disabled: True
+                text: 'Generate Report'
+                size_hint_x: 0.2
+                on_press:root.generate()
+                pos_hint: {'right': 0.94, 'top': -0.5}
+                background_normal: "images/boton.png"
+                border: 30,30,30,30
+                font_name: "lemon"
+                font_size: 22
+            Button:
+                id: report_word
+                disabled: True
+                text: 'Open .docx Report'
+                size_hint_x: 0.2
+                spacing: 100
+                on_press: root.openWord()
+                pos_hint: {'right': 0.52, 'top': -3}
+                background_normal: "images/boton.png"
+                border: 30,30,30,30
+                font_name: "lemon"
+                font_size: 22
+            Button:
+                id: report_csv
+                disabled: True
+                text: 'Open .csv Report'
+                size_hint_x: 0.2
+                spacing: 20
+                on_press: root.openCSV()
+                pos_hint: {'right': 0.722, 'top': -3}
+                background_normal: "images/boton.png"
+                border: 30,30,30,30
+                font_name: "lemon"
+                font_size: 22
+            Button:
+                id: update_button
+                text: 'Update Database'
+                size_hint_x: 1
+                on_press:root.update()
+                on_release:root.update()
+                disabled: False
+                pos_hint: {'right': 1, 'top': -6.5}
+                background_normal: "images/boton.png"
+                border: 30,30,30,30
+                font_name: "lemon"
+            Label:
+                id:update_label
+                text: 'Updating...'
+                size_hint_y: 3
+                opacity:0
+                pos_hint: {'right': 1, 'top': -7.5}
+                font_name: "lemon"
+            Image:
+                id: gif
+                source: 'images/balls.gif'
+                anim_delay:0.1
+                size_hint_y: 6
+                allow_stretch: True
+                opacity:0
+                pos_hint: {'right': 1, 'top': -10.5}
+            Label:
+                text: 'David Garcia Martin'
+                size_hint_y: 3
+                pos_hint: {'right': 1, 'top': -18.5}
+                font_name: "lemon"
+
+<FileChoosePopup>:
+    title: "Choose a .CSV File"
+    size_hint: .8, .8
+    pos_hint: {'right': 0.92, 'top': 0.865}
+    auto_dismiss: False
+
+    BoxLayout:
+        orientation: "vertical"
+        FileChooser:
+            id: filechooser
+            pos_hint: {'right': 1}
+            FileChooserIconLayout
+
+        BoxLayout:
+            size_hint: (1, 0.1)
+            pos_hint: {'right': 1, 'top': 1.2}
+            spacing: 20
+            Button:
+                text: "Cancel"
+                on_release: root.dismiss()
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.selection)
+                id: ldbtn
+                disabled: True if filechooser.selection==[] else False

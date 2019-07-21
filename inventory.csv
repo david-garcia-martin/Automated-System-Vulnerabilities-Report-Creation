@@ -1,0 +1,10 @@
+Windows
+cpe:2.3:a:openssl:openssl:0.9.1c
+cpe:2.3:a:microsoft:internet_explorer:8
+cpe:2.3:o:microsoft:azure_devops_server:2018
+Ubuntu
+cpe:2.3:a:apache:http_server:2.4.10
+cpe:2.3:o:canonical:ubuntu_linux:14.10
+MacOS
+cpe:2.3:a:graphicsmagick:graphicsmagick:1.1
+cpe:2.3:o:apple:mac_os_x:10.12.6
